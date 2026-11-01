@@ -562,6 +562,29 @@ button:hover .roll__next {
   }
 }
 
+/* tablet/mobile: linhas empilhadas (título inteiro, tags embaixo) */
+@media (width <= 48rem) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-2);
+  }
+
+  .row__label {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .row__tags {
+    flex-wrap: wrap;
+  }
+
+  .traj__desc {
+    max-width: none;
+  }
+}
+
 @media (width <= 34rem) {
   .row__line,
   .row__go {
