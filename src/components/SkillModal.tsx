@@ -155,7 +155,7 @@ export default function SkillModal({ data, onClose }: SkillModalProps) {
       >
         <header className="skillmodal__head">
           <span className="text-hud">
-            SKILL::<strong>{skill.name}</strong>
+            SKILL:<strong>{skill.name}</strong>
           </span>
           <button
             className="skillmodal__close"
@@ -197,11 +197,11 @@ export default function SkillModal({ data, onClose }: SkillModalProps) {
 
         <footer className="skillmodal__foot text-hud" data-modal-fade>
           <span>
-            DESDE::<strong>{skill.since}</strong>
+            DESDE:<strong>{skill.since}</strong>
           </span>
           {skill.category && (
             <span>
-              ÁREA::<strong>{skill.category}</strong>
+              ÁREA:<strong>{skill.category}</strong>
             </span>
           )}
         </footer>
