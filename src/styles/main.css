@@ -282,11 +282,6 @@ button:hover .roll__next {
   .navpill {
     display: none;
   }
-
-  /* hambúrguer aparece onde o navpill some */
-  .navtrigger {
-    display: grid;
-  }
 }
 
 /* ---------- Botão hambúrguer ---------- */
@@ -332,6 +327,13 @@ button:hover .roll__next {
 .navtrigger:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
+}
+
+/* hambúrguer aparece onde o navpill some (depois da regra base) */
+@media (width <= 48rem) {
+  .navtrigger {
+    display: grid;
+  }
 }
 
 /* ---------- Drawer mobile ---------- */
