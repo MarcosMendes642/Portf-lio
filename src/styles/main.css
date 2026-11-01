@@ -948,13 +948,24 @@ button:hover .roll__next {
 .footer__bottom {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: var(--s-4);
   margin-top: var(--s-24);
 }
 
-@media (width <= 34rem) {
+.footer__bottom > span {
+  text-align: center;
+}
+
+@media (width <= 48rem) {
   .footer__bottom {
     flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .footer__socials {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 

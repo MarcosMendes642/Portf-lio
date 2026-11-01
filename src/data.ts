@@ -25,7 +25,7 @@ export const profile = {
   location: "Volta Redonda-RJ, BR",
   timezoneLabel: "RJ",
   email: "DevMarcosMendes@gmail.com",
-  availability: "Q1'27", // título alusivo a "disponível a partir de"
+  availability: "Q1'27", 
   bio: [
     "Sou desenvolvedor full stack apaixonado por transformar problemas complexos em soluções simples e bem construídas, do banco de dados à interface.",
 "Trabalho com JavaScript e TypeScript, tenho uma base sólida em lógica de programação e MySQL, e gosto de cuidar do front-end com o mesmo rigor que dedico ao back-end.",
@@ -34,9 +34,9 @@ export const profile = {
 
 export type Project = {
   name: string;
-  meta: string; // ex: "w/ estúdio"
+  meta: string; 
   year: string;
-  href: string; // link externo do projeto
+  href: string; 
 };
 
 // ============================================================
@@ -47,9 +47,9 @@ export interface Skill {
   name: string;
   icon: IconType;
   category?: string;
-  color: string; // cor oficial da tecnologia (hover/glow)
-  opticalScale?: number; // normaliza o tamanho visual do ícone
-  since: string; // ano em que comecei a usar
+  color: string; 
+  opticalScale?: number; 
+  since: string; 
   description: string;
   topics: string[];
 }
@@ -184,11 +184,7 @@ export const projects: Project[] = [
 
 ];
 
-// ============================================================
-// TRAJETÓRIA — formação & experiência
-// (adicione os períodos reais no campo "period" quando quiser:
-//  ex.: "2024 — 2025"; deixe "" para não exibir o chip de data)
-// ============================================================
+
 
 export type Qualification = {
   kind: "Formação" | "Experiência";
@@ -225,5 +221,5 @@ export const trajectory: Qualification[] = [
 export const socials = [
   { label: "GitHub", href: "https://github.com/MarcosMendes642" },
   { label: "LinkedIn", href: "https://linkedin.com/in/seu-usuario" },
-  { label: "Instagram", href: "https://x.com/seu-usuario" },
+  { label: "Instagram", href: "https://www.instagram.com/m.mendezx__" },
 ];
