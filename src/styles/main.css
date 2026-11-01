@@ -194,7 +194,7 @@ button:hover .roll__next {
   position: fixed;
   inset-inline: 0;
   top: 0;
-  z-index: 10;
+  z-index: 45; /* acima do drawer (40), abaixo do modal (60) */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: color-mix(in srgb, var(--paper) 65%, transparent);
@@ -282,6 +282,127 @@ button:hover .roll__next {
   .navpill {
     display: none;
   }
+
+  /* hambúrguer aparece onde o navpill some */
+  .navtrigger {
+    display: grid;
+  }
+}
+
+/* ---------- Botão hambúrguer ---------- */
+
+.navtrigger {
+  display: none;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+
+.navtrigger__bars {
+  position: relative;
+  width: 1.05rem;
+  height: 1px;
+  background: var(--ink);
+  transition: rotate 0.4s var(--ease-out-expo);
+}
+
+.navtrigger__bars::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: -4px;
+  height: 1px;
+  background: var(--ink);
+  transition:
+    top 0.3s var(--ease-out-expo),
+    rotate 0.4s var(--ease-out-expo);
+}
+
+.navtrigger.is-open .navtrigger__bars {
+  rotate: 45deg;
+}
+
+.navtrigger.is-open .navtrigger__bars::before {
+  top: 0;
+  rotate: 90deg;
+}
+
+.navtrigger:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---------- Drawer mobile ---------- */
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--paper);
+  display: grid;
+  align-content: center;
+  overflow-y: auto;
+  padding-block: 7rem var(--s-12);
+}
+
+@media (width > 48rem) {
+  .drawer {
+    display: none;
+  }
+}
+
+.drawer__inner {
+  width: min(1200px, 92vw);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-16);
+}
+
+.drawer__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.drawer__item > a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  color: inherit;
+  font-size: clamp(1.7rem, 1.2rem + 4vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: var(--track-heading);
+}
+
+.drawer__index {
+  flex: none;
+  min-width: 2.2rem;
+}
+
+.drawer__foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.drawer__email {
+  align-self: flex-start;
+  font-size: clamp(1.1rem, 1rem + 1.5vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: var(--track-heading);
+}
+
+.drawer__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
 }
 
 .header__actions {

@@ -215,6 +215,18 @@ export const trajectory: Qualification[] = [
 ];
 
 // ============================================================
+// NAVEGAÇÃO — labels + âncoras (desktop e menu mobile)
+// ============================================================
+
+export const navItems = [
+  { label: "Sobre", href: "#sobre" },
+  { label: "Trabalhos", href: "#trabalhos" },
+  { label: "Habilidades", href: "#habilidades" },
+  { label: "Trajetória", href: "#trajetoria" },
+  { label: "Contato", href: "#contato" },
+];
+
+// ============================================================
 // SOCIAIS
 // ============================================================
 
