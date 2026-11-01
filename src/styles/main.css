@@ -374,6 +374,7 @@ button:hover .roll__next {
 
 .hero__inner {
   width: min(56rem, 92vw);
+  text-align: center;
 }
 
 .hero__eyebrow {
@@ -390,12 +391,14 @@ button:hover .roll__next {
   font-weight: 500;
   letter-spacing: var(--track-heading);
   line-height: var(--lh-heading);
-  text-wrap: balance;
+  text-align: center;
+  /* sem text-wrap: balance — conflita com o SplitText (linhas medidas errado) */
 }
 
 .hero__line {
   overflow: clip;
   padding-block: 0.04em;
+  text-align: center;
 }
 
 .hero__word {
