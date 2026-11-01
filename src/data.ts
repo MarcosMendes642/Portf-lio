@@ -60,7 +60,7 @@ export const skills: Skill[] = [
     icon: SiJavascript,
     category: "Linguagens",
     color: "#f7df1e",
-    since: "2023",
+    since: "2024",
     description:
       "Minha base: a linguagem da web. Uso no dia a dia para construir interfaces, manipular o DOM, trabalhar com APIs assíncronas (fetch, Promises, async/await) e módulos ES.",
     topics: ["ES2023+", "DOM", "Async", "ESM"],
@@ -100,7 +100,7 @@ export const skills: Skill[] = [
     icon: SiMysql,
     category: "Banco de dados",
     color: "#4479a1",
-    since: "2024",
+    since: "2026",
     description:
       "Modelagem relacional: criação de tabelas, chaves, joins, consultas SQL e operações CRUD — fundamentos de estruturação e busca de dados.",
     topics: ["SQL", "Joins", "CRUD", "Modelagem"],
@@ -110,7 +110,7 @@ export const skills: Skill[] = [
     icon: SiHtml5,
     category: "Front-end",
     color: "#e34f26",
-    since: "2023",
+    since: "2024",
     description:
       "Estrutura semântica e acessível: tags corretas, landmarks, meta/viewport, imagens responsivas e formulários — com atenção a SEO e hierarquia de conteúdo.",
     topics: ["Semântica", "A11y", "SEO", "Formulários"],
@@ -120,7 +120,7 @@ export const skills: Skill[] = [
     icon: SiCss,
     category: "Front-end",
     color: "#1572b6",
-    since: "2023",
+    since: "2024",
     description:
       "Layout moderno (flexbox, grid, unidades fluidas), custom properties, color-mix, transições e easings — tipografia e microinterações cuidadosas em cada pixel.",
     topics: ["Flexbox & Grid", "Variáveis", "Responsivo", "Motion"],
@@ -130,7 +130,7 @@ export const skills: Skill[] = [
     icon: SiTailwindcss,
     category: "Front-end",
     color: "#06b6d4",
-    since: "2025",
+    since: "2026",
     description:
       "Utilitários atômicos para produtividade sem perder consistência: paleta, spacing e estados no próprio markup, com theming centralizado.",
     topics: ["Utility-first", "Theming", "Responsive", "Dark mode"],
@@ -150,7 +150,7 @@ export const skills: Skill[] = [
     icon: SiPython,
     category: "Linguagens",
     color: "#3776ab",
-    since: "2024",
+    since: "2026",
     description:
       "Automações, scripts e fundamentos: lógica, estruturas de dados, leitura de arquivos e primeiras integrações — a base da automação de tarefas.",
     topics: ["Scripts", "Automações", "Lógica", "Dados"],
@@ -160,7 +160,7 @@ export const skills: Skill[] = [
     icon: SiGit,
     category: "Ferramentas",
     color: "#f05032",
-    since: "2024",
+    since: "2025",
     description:
       "Versionamento no fluxo de trabalho: branch/merge, rebase, histórico limpo, pull requests e colaboração em repositórios remotos.",
     topics: ["Branch & merge", "Rebase", "Pull requests", "GitHub"],
@@ -170,7 +170,7 @@ export const skills: Skill[] = [
     icon: PiSparkle,
     category: "Inteligência Artificial",
     color: "#8b5cf6",
-    opticalScale: 1.16, // phosphor tem padding interno: compensa o tamanho óptico
+    opticalScale: 1.16, 
     since: "2025",
     description:
       "Uso IA como parte do workflow de desenvolvedor: integração de APIs de modelos, engenharia de prompts, agentes e ferramentas (OpenCode) para acelerar código, revisar e automatizar tarefas.",
