@@ -7,8 +7,6 @@ import Roll from "./Roll";
 
 gsap.registerPlugin(SplitText);
 
-const CURRENT_YEAR = new Date().getFullYear();
-
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
 
@@ -97,7 +95,6 @@ export default function Hero() {
       </div>
 
       <div className="hero__meta text-hud">
-        <span>Portfolio:{CURRENT_YEAR}</span>
         <span>Scroll para explorar ↓</span>
       </div>
     </section>

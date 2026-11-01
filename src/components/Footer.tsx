@@ -49,9 +49,9 @@ export default function Footer() {
   return (
     <footer className="footer" id="contato" ref={root}>
       <div className="container footer__cta">
-        <p className="footer__hello">Tem um projeto em mente?</p>
+        <p className="footer__hello">DISPONÍVEL PARA OPORTUNIDADES</p>
 
-        <h2 className="footer__title">Vamos criar algo original.</h2>
+        <h2 className="footer__title">Vamos construir algo juntos.</h2>
 
         <a className="footer__email" href={`mailto:${profile.email}`}>
           <Roll>{profile.email}</Roll>
