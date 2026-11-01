@@ -101,24 +101,34 @@ export default function Skills() {
     if (reduced) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".skills .section-head", {
-        scaleY: 0,
-        transformOrigin: "left",
-        duration: 1,
-        ease: "expo.out",
-        scrollTrigger: { trigger: ".skills", start: "top 88%", once: true },
-      });
+      gsap.fromTo(
+        ".skills .section-head",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          transformOrigin: "left",
+          duration: 1,
+          ease: "expo.out",
+          immediateRender: false,
+          scrollTrigger: { trigger: ".skills", start: "top 88%", once: true },
+        },
+      );
 
-      
-      gsap.from(".skills__grid .skill", {
-        y: 22,
-        autoAlpha: 0,
-        scale: 0.92,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.06,
-        scrollTrigger: { trigger: ".skills__grid", start: "top 88%", once: true },
-      });
+      // todos os cards entram em cascata, de uma vez
+      gsap.fromTo(
+        ".skills__grid .skill",
+        { y: 22, autoAlpha: 0, scale: 0.92 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.06,
+          immediateRender: false,
+          scrollTrigger: { trigger: ".skills__grid", start: "top 88%", once: true },
+        },
+      );
     }, root);
 
     return () => ctx.revert();

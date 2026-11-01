@@ -13,22 +13,32 @@ export default function Trajectory() {
     if (reduced) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".trajectory .section-head", {
-        scaleY: 0,
-        transformOrigin: "left",
-        duration: 1,
-        ease: "expo.out",
-        scrollTrigger: { trigger: ".trajectory", start: "top 88%", once: true },
-      });
+      gsap.fromTo(
+        ".trajectory .section-head",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          transformOrigin: "left",
+          duration: 1,
+          ease: "expo.out",
+          immediateRender: false,
+          scrollTrigger: { trigger: ".trajectory", start: "top 88%", once: true },
+        },
+      );
 
-      gsap.from(".trajectory .row", {
-        y: 26,
-        autoAlpha: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: { trigger: ".trajectory .rows", start: "top 85%", once: true },
-      });
+      gsap.fromTo(
+        ".trajectory .row",
+        { y: 26, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.12,
+          immediateRender: false,
+          scrollTrigger: { trigger: ".trajectory .rows", start: "top 88%", once: true },
+        },
+      );
     }, root);
 
     return () => ctx.revert();

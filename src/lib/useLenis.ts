@@ -54,8 +54,15 @@ export function useLenis() {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
+    // recalcula os triggers depois do primeiro layout/fonts (mobile muda cores)
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh, { once: true });
+    const t = setTimeout(refresh, 600);
+
     return () => {
       gsap.ticker.remove(raf);
+      clearTimeout(t);
+      window.removeEventListener("load", refresh);
       lenis?.destroy();
       lenis = null;
     };

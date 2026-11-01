@@ -13,22 +13,32 @@ export default function About() {
     if (reduced) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".about .section-head", {
-        scaleY: 0,
-        transformOrigin: "left",
-        duration: 1,
-        ease: "expo.out",
-        scrollTrigger: { trigger: ".about", start: "top 85%", once: true },
-      });
+      gsap.fromTo(
+        ".about .section-head",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          transformOrigin: "left",
+          duration: 1,
+          ease: "expo.out",
+          immediateRender: false,
+          scrollTrigger: { trigger: ".about", start: "top 88%", once: true },
+        },
+      );
 
-      gsap.from(".about__para", {
-        y: 24,
-        autoAlpha: 0,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: { trigger: ".about__text", start: "top 85%", once: true },
-      });
+      gsap.fromTo(
+        ".about__para",
+        { y: 24, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.12,
+          immediateRender: false,
+          scrollTrigger: { trigger: ".about__text", start: "top 88%", once: true },
+        },
+      );
     }, root);
 
     return () => ctx.revert();

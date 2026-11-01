@@ -25,22 +25,32 @@ export default function Work() {
     if (reduced) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".rows .row", {
-        y: 28,
-        autoAlpha: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.08,
-        scrollTrigger: { trigger: ".rows", start: "top 85%", once: true },
-      });
+      gsap.fromTo(
+        ".rows .row",
+        { y: 28, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.08,
+          immediateRender: false, // visível por padrão; anima só quando o trigger dispara
+          scrollTrigger: { trigger: ".rows", start: "top 88%", once: true },
+        },
+      );
 
-      gsap.from(".work-head", {
-        scaleY: 0,
-        transformOrigin: "left",
-        duration: 1,
-        ease: "expo.out",
-        scrollTrigger: { trigger: ".work-head", start: "top 88%", once: true },
-      });
+      gsap.fromTo(
+        ".work-head",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          transformOrigin: "left",
+          duration: 1,
+          ease: "expo.out",
+          immediateRender: false,
+          scrollTrigger: { trigger: ".work-head", start: "top 88%", once: true },
+        },
+      );
     }, root);
 
     return () => ctx.revert();

@@ -16,14 +16,19 @@ export default function Footer() {
     if (reduced) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".footer__hello, .footer__title, .footer__email", {
-        y: 30,
-        autoAlpha: 0,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.1,
-        scrollTrigger: { trigger: ".footer__cta", start: "top 85%", once: true },
-      });
+      gsap.fromTo(
+        ".footer__hello, .footer__title, .footer__email",
+        { y: 30, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.1,
+          immediateRender: false,
+          scrollTrigger: { trigger: ".footer__cta", start: "top 88%", once: true },
+        },
+      );
 
       // leve parallax no bloco do CTA conforme o rodapé entra
       gsap.to(".footer__cta", {
