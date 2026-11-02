@@ -1290,6 +1290,198 @@ button:hover .roll__next {
   text-wrap: pretty;
 }
 
+/*
+  EXPERIÊNCIA — composição editorial (CSN em destaque)
+  palavra-gigante + eyebrow mono + réguas finas; nada colorido,
+  nada de sombras — papel e tinta, igual ao resto do site.
+*/
+.traj-exp {
+  margin-top: var(--s-16);
+  /* mesmo tratamento dos cards de trabalho: linha fina + raio + tint de tinta */
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--ink) 3%, var(--paper));
+  padding: var(--s-8);
+  transition: border-color 0.35s ease;
+}
+
+@media (hover: hover) {
+  .traj-exp:hover {
+    border-color: var(--line-strong);
+  }
+}
+
+.traj-exp__top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-6);
+}
+
+.traj-exp__ident {
+  min-width: 0;
+}
+
+.traj-exp__eyebrow {
+  white-space: normal; /* texto-hud é nowrap; o eyebrow editorial quebra na linha */
+  line-height: 1.7;
+  margin-bottom: var(--s-2);
+}
+
+.traj-exp__clip {
+  overflow: clip;
+  padding-block: 0.06em; /* margem de segurança pro clip não roer o topo dos glifos */
+}
+
+.traj-exp__company {
+  font-size: clamp(3.6rem, 2rem + 10vw, 7rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.traj-exp__side {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s-4);
+}
+
+/* monograma tipográfico discreto (substitui um asset de logo) */
+.traj-exp__mark {
+  display: grid;
+  place-items: center;
+  min-width: 3.6rem;
+  height: 3.6rem;
+  padding-inline: 0.5em;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  transition:
+    translate 0.35s var(--ease-out-expo),
+    border-color 0.35s ease;
+}
+
+/* logo institucional: achata pra cor de tinta do tema (brightness 0 → preto;
+   dark: + invert → branco). O fallback tipográfico fica no JSX (onError). */
+.traj-exp__mark img {
+  display: block;
+  width: 4.6rem;
+  height: auto;
+  filter: brightness(0);
+}
+
+[data-theme="dark"] .traj-exp__mark img {
+  filter: brightness(0) invert(1);
+}
+
+.traj-exp__rule {
+  position: relative;
+  height: 1px;
+  background: var(--line);
+}
+
+/* entranha animada; no hover preenche da esquerda (mesma linguagem das rows) */
+.traj-exp__rule::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--line-strong);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .traj-exp:hover .traj-exp__rule::after {
+    transform: scaleX(1);
+  }
+
+  .traj-exp:hover .traj-exp__mark {
+    translate: 0 -2px;
+    border-color: var(--line-strong);
+  }
+}
+
+.traj-exp__grid {
+  display: grid;
+  grid-template-columns: minmax(12rem, 17rem) 1fr;
+  gap: var(--s-6) var(--s-16);
+  padding-top: var(--s-8);
+}
+
+.traj-exp__role {
+  margin-top: 0.5rem;
+  font-size: clamp(1.4rem, 1.1rem + 1.6vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.traj-exp__desc {
+  max-width: 36rem;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.traj-exp__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+
+.traj-label {
+  margin-top: var(--s-16);
+}
+
+/* a lista de formação herda as .rows; aqui vira um bloco também caixado */
+.traj-rows {
+  margin-top: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--ink) 3%, var(--paper));
+  padding-inline: var(--s-8);
+}
+
+@media (width <= 48rem) {
+  .traj-exp {
+    padding: var(--s-6);
+  }
+
+  .traj-rows {
+    padding-inline: var(--s-6);
+  }
+
+  .traj-exp__top {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: var(--s-6);
+  }
+
+  .traj-exp__side {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s-4);
+  }
+
+  .traj-exp__grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+
+  .traj-exp__desc {
+    max-width: none;
+  }
+}
+
 /* ---------- Sobre ---------- */
 
 .about {

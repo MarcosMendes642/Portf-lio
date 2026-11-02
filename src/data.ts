@@ -205,19 +205,25 @@ export type Qualification = {
   kind: "Formação" | "Experiência";
   title: string;
   org: string;
+  orgFull?: string;
+  location?: string;
   period: string;
   desc: string;
   tags: string[];
+  logo?: string;
 };
 
 export const trajectory: Qualification[] = [
   {
     kind: "Experiência",
-    title: "Estagiário (TI)",
+    title: "Estagiário de TI",
     org: "CSN",
+    orgFull: "Companhia Siderúrgica Nacional",
+    location: "Volta Redonda, RJ",
     period: "2026",
+    logo: "/trajetoria/csn.svg",
     desc: "Estágio pela CSN, com automações em TypeScript: scripts de Office que automatizam planilhas no Excel, reduzindo trabalho manual e erros de digitação.",
-    tags: ["CSN", "Office Scripts", "TypeScript"],
+    tags: ["TypeScript", "Office Scripts", "Excel"],
   },
   {
     kind: "Formação",
