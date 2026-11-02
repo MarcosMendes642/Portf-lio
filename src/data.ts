@@ -219,10 +219,10 @@ export const trajectory: Qualification[] = [
 // ============================================================
 
 export const navItems = [
-  { label: "Sobre", href: "#sobre" },
   { label: "Trabalhos", href: "#trabalhos" },
   { label: "Habilidades", href: "#habilidades" },
   { label: "Trajetória", href: "#trajetoria" },
+  { label: "Sobre", href: "#sobre" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -232,6 +232,5 @@ export const navItems = [
 
 export const socials = [
   { label: "GitHub", href: "https://github.com/MarcosMendes642" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/seu-usuario" },
-  { label: "Instagram", href: "https://www.instagram.com/m.mendezx__" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/marcos-mendes-516984448/" },
 ];

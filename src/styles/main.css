@@ -195,30 +195,20 @@ button:hover .roll__next {
   inset-inline: 0;
   top: 0;
   z-index: 45; /* acima do drawer (40), abaixo do modal (60) */
+  pointer-events: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+/* rolado: fundo translúcido + filete para o header viver sobre o conteúdo */
+.header.is-scrolled {
+  background: color-mix(in srgb, var(--paper) 72%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--paper) 65%, transparent);
-  border-bottom: 1px solid var(--line);
-}
-
-.hud {
-  display: flex;
-  gap: var(--s-6);
-  overflow: hidden;
-  padding: 0.45rem 0;
-  width: min(1200px, 92vw);
-  margin-inline: auto;
-  border-bottom: 1px solid var(--line);
-}
-
-.hud .hud__chip:nth-child(n + 4) {
-  display: none;
-}
-
-@media (width >= 48rem) {
-  .hud .hud__chip:nth-child(n + 4) {
-    display: inline;
-  }
+  border-bottom-color: var(--line);
 }
 
 .header__bar {
@@ -226,9 +216,17 @@ button:hover .roll__next {
   align-items: center;
   justify-content: space-between;
   gap: var(--s-4);
-  padding-block: 0.8rem;
-  width: min(1200px, 92vw);
-  margin-inline: auto;
+  /* logo alinhada com o "D" do título do hero (mesmo padding) */
+  padding-block: 1.2rem;
+  padding-inline: clamp(1.25rem, 12vw, 15rem) clamp(1rem, 3vw, 3rem);
+  width: 100%;
+  pointer-events: auto;
+}
+
+@media (width <= 48rem) {
+  .header__bar {
+    padding-inline: var(--s-6) var(--s-4);
+  }
 }
 
 .logo {
@@ -256,26 +254,46 @@ button:hover .roll__next {
   white-space: nowrap;
 }
 
+/* Nav em pill translúcida, canto superior direito (referência) */
 .navpill {
-  position: absolute;
-  left: 50%;
-  translate: -50% 0;
+  display: inline-flex;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 9%, transparent);
 }
 
 .navpill__list {
   display: flex;
-  gap: var(--s-6);
+  gap: 0.2rem;
 }
 
 .navpill__link {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  color: var(--ink-soft);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  padding: 0.4em 0.9em;
+  border-radius: 999px;
+  transition:
+    opacity 0.3s ease,
+    background-color 0.35s var(--ease-out-expo),
+    color 0.35s var(--ease-out-expo);
 }
 
 .navpill__link:hover {
-  color: var(--ink);
+  opacity: 0.65;
+}
+
+.navpill__link.is-active:hover {
+  opacity: 1;
+}
+
+/* pílula da seção ativa (referência) — fundo invertido */
+.navpill__link.is-active {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--ink) 25%, transparent);
 }
 
 @media (width <= 48rem) {
@@ -346,7 +364,7 @@ button:hover .roll__next {
   display: grid;
   align-content: center;
   overflow-y: auto;
-  padding-block: 7rem var(--s-12);
+  padding-block: 7rem var(--s-16);
 }
 
 @media (width > 48rem) {
@@ -407,31 +425,32 @@ button:hover .roll__next {
   gap: var(--s-4);
 }
 
-.header__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--s-4);
-}
-
+/* Botão de tema — ícone único flutuando no canto inferior direito */
 .themetoggle {
-  display: flex;
-  gap: 0.35rem;
-}
-
-.themetoggle__seg {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.5rem);
+  bottom: var(--s-8);
+  z-index: 46; /* acima do drawer (40), abaixo do modal (60) */
   display: grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  border: 1px solid var(--line);
+  width: 2.6rem;
+  height: 2.6rem;
   color: var(--ink-muted);
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.themetoggle__seg[aria-pressed="true"] {
+.themetoggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.themetoggle:hover {
   color: var(--ink);
-  border-color: var(--ink);
+}
+
+.themetoggle:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 /* ============================================================
@@ -488,58 +507,120 @@ button:hover .roll__next {
 
 .hero {
   min-height: 100svh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding-top: var(--s-32);
+  display: flex;
+  align-items: center;
+  /* assimétrico de propósito: o TÍTULO fica no meio do viewport (referência) */
+  padding-block: var(--s-32) var(--s-16);
+  padding-inline: clamp(1.25rem, 12vw, 15rem) clamp(1rem, 3vw, 3rem);
   position: relative;
+  overflow: clip;
+}
+
+/* Grade vertical sutil (inspiração da referência) — só decorativa */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line) 0,
+    var(--line) 1px,
+    transparent 1px,
+    transparent calc(100% / 10)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  opacity: 0.6;
 }
 
 .hero__inner {
-  width: min(56rem, 92vw);
-  text-align: center;
+  width: min(100%, 82rem);
+  text-align: left;
 }
 
 .hero__eyebrow {
   font-family: var(--font-mono);
-  font-size: clamp(0.75rem, 0.5rem + 0.3vw, 0.85rem);
+  font-size: clamp(0.72rem, 0.5rem + 0.3vw, 0.85rem);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.22em;
+  line-height: 1.9;
   color: var(--ink-muted);
 }
 
 .hero__title {
-  margin-top: var(--s-8);
-  font-size: clamp(2.2rem, 1rem + 6vw, 5.5rem);
-  font-weight: 500;
-  letter-spacing: var(--track-heading);
-  line-height: var(--lh-heading);
-  text-align: center;
-  /* sem text-wrap: balance — conflita com o SplitText (linhas medidas errado) */
+  margin-top: var(--s-4);
+  font-size: clamp(2.4rem, 1.2rem + 4.6vw, 5.2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  text-align: left;
+  /* sem text-wrap: balance — conflita com animações de verso (linhas medidas errado) */
 }
 
+/* Linha em FLEX + column-gap: espaçamento entre palavras NUNCA depende de
+   espaços de texto no JSX (quebras por espaço com inline-block são instáveis —
+   comprovado: palavras vazavam da viewport no mobile). flex-wrap quebra de
+   verdade em qualquer largura. */
 .hero__line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.35em;
+  text-align: left;
+}
+
+/* clip por palavra: cada word anima dentro do próprio clip (a linha pode
+   quebrar em várias rows de flex sem vazar palavra de uma row na outra) */
+.hero__clip {
+  display: inline-block;
   overflow: clip;
-  padding-block: 0.04em;
-  text-align: center;
+  padding-block: 0.07em;
 }
 
 .hero__word {
   display: inline-block;
 }
 
-.hero__chips {
-  display: flex;
-  justify-content: center;
-  gap: var(--s-4);
-  margin-top: var(--s-12);
+/* 1º verso: régua fina preenchendo à direita (referência) */
+.hero__line--rule {
+  column-gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.hero__rule {
+  flex: 1 1 4rem;
+  min-width: 4rem;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* 2º verso: onda antes da primeira palavra (referência) */
+.hero__line--wave {
+  column-gap: clamp(0.8rem, 2vw, 1.6rem);
+}
+
+.hero__wave {
+  width: clamp(1.7rem, 3.2vw, 3rem);
+  height: auto;
+  color: var(--ink-muted);
+  flex-shrink: 0;
+}
+
+.hero__word {
+  display: inline-block;
 }
 
 .hero__cta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   gap: var(--s-4);
-  margin-top: var(--s-24);
+  margin-top: var(--s-12);
   flex-wrap: wrap;
 }
 
@@ -548,13 +629,52 @@ button:hover .roll__next {
   inset-inline: 0;
   bottom: var(--s-8);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: min(1200px, 92vw);
   margin-inline: auto;
+  z-index: 1;
+}
+
+@media (width <= 48rem) {
+  .hero {
+    padding-block: var(--s-24);
+    padding-inline: var(--s-6) var(--s-4);
+  }
+
+  .hero__inner {
+    width: min(30rem, 100%);
+  }
+
+  .hero__rule {
+    display: none;
+  }
+
+  .hero__wave {
+    display: none;
+  }
+
+  /* gaps menores no mobile: palavras em coluna estreita */
+  .hero__line {
+    column-gap: 0.26em;
+  }
+
+  .hero__line--rule {
+    column-gap: 0.26em;
+  }
+
+  .hero__title {
+    max-width: 100%;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__cta {
+    margin-top: var(--s-8);
+    gap: 0.75rem;
+  }
 }
 
 @media (width <= 34rem) {
-  .hero__meta span:last-child {
+  .hero__meta {
     display: none;
   }
 }

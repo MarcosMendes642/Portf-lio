@@ -138,7 +138,7 @@ export default function Skills() {
     <section className="section container skills" id="habilidades" ref={root}>
       <div className="section-head skills-head">
         <span className="section-head__index">02</span>
-        <h2 className="section-head__title">O que eu faço</h2>
+        <h2 className="section-head__title">Minhas Habilidades</h2>
       </div>
 
       <div className="skills__grid">
