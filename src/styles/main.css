@@ -741,30 +741,6 @@ button:hover .roll__next {
   }
 }
 
-.row__go {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.row__go svg {
-  width: 0.9rem;
-  height: 0.9rem;
-}
-
-@media (hover: hover) {
-  .row:hover .row__go {
-    opacity: 1;
-    transition-delay: 0.16s;
-  }
-}
-
 .row__tags {
   flex: none;
   display: flex;
@@ -832,10 +808,203 @@ button:hover .roll__next {
 }
 
 @media (width <= 34rem) {
-  .row__line,
-  .row__go {
+  .row__line {
     display: none;
   }
+}
+
+/* ---------- Trabalhos — carrossel de cards ---------- */
+
+/*
+  Carrossel nativo: track em overflow-x + scroll-snap (touch/trackpad/button).
+  Com poucos projetos a track não transborda → setas/contador NEM APARECEM;
+  conforme os projetos crescem, a track transborda e o carrossel "liga" sozinho.
+  Step de scroll medido no JS (largura do card + gap) — não depende de px fixo.
+*/
+
+.projects {
+  margin-top: var(--s-16);
+}
+
+.projects__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
+}
+
+.projects__arrows {
+  display: flex;
+  gap: var(--s-2);
+}
+
+.projects__arrow {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--ink-soft);
+  transition: color 0.3s ease, scale 0.2s ease;
+}
+
+.projects__arrow svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+@media (hover: hover) {
+  .projects__arrow:not(:disabled):hover {
+    color: var(--ink);
+  }
+}
+
+.projects__arrow:active {
+  scale: 0.94;
+}
+
+.projects__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.projects__arrow:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.projects__track {
+  /* essencial: snap todo card; contain evita propagar wheel pro Lenis na page */
+  display: flex;
+  gap: var(--s-6);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* setas/contador fazem o papel da barra */
+  /* overflow-y computa `auto` junto com overflow-x; sem esse respiro o
+     translate -4px do hover do card é cortado no topo do track */
+  padding-block: var(--s-2);
+  margin-block: calc(var(--s-2) * -1);
+}
+
+.projects__track::-webkit-scrollbar {
+  display: none;
+}
+
+.projects__item {
+  flex: none;
+  width: min(20rem, 100%); /* mobile: 1 card por "slide" + snap */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (width > 48rem) {
+  /* desktop: 2 cards preenchendo o container; 3+ viram carrossel de 1 slot */
+  .projects__item {
+    width: calc(50% - (var(--s-6) / 2));
+  }
+}
+
+.projcard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--ink) 3%, var(--paper));
+  transition: translate 0.35s var(--ease-out-expo), border-color 0.35s ease;
+}
+
+@media (hover: hover) {
+  .projcard:hover {
+    translate: 0 -4px;
+    border-color: var(--line-strong);
+  }
+}
+
+.projcard__media {
+  overflow: clip;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  aspect-ratio: 16 / 10;
+}
+
+.projcard__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: scale 0.6s var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .projcard:hover .projcard__img {
+    scale: 1.03;
+  }
+}
+
+/* placeholder: grade fina + monograma centralizado (mesma vibe do hero) */
+.projcard__ph {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line) 0,
+    var(--line) 1px,
+    transparent 1px,
+    transparent calc(100% / 8)
+  );
+  -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent);
+  mask-image: linear-gradient(to bottom, #000 88%, transparent);
+}
+
+.projcard__phlogo {
+  width: 3.4rem;
+  height: auto;
+  color: var(--ink-muted);
+}
+
+.projcard__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: auto; /* actions alinham na base entre cards de alturas iguais */
+}
+
+.projcard__title {
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+  font-weight: 500;
+  letter-spacing: var(--track-heading);
+  overflow-wrap: anywhere; /* nomes longos não estouram o card */
+}
+
+.projcard__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.projcard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.35rem;
+}
+
+/* botão compacto dos cards (não usar no hero/CTA) */
+.btn--sm {
+  padding: 0.55rem 1.05rem;
+  font-size: 0.78rem;
 }
 
 /* ---------- Habilidades (grade única de cards, centralizada) ---------- */

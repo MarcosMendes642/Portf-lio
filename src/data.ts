@@ -34,9 +34,11 @@ export const profile = {
 
 export type Project = {
   name: string;
-  meta: string; 
+  meta: string;
   year: string;
   href: string; 
+  repo?: string;
+  image?: string;
 };
 
 // ============================================================
@@ -179,9 +181,22 @@ export const skills: Skill[] = [
 ];
 
 export const projects: Project[] = [
-  { name: "Divide Aqui(front-end)", meta: "TCC FAETEC", year: "2026", href: "https://divide-aqui.vercel.app" },
-  { name: "Divide Aqui(Back-end)", meta: "TCC FAETEC", year: "2026", href: "https://divide-aqui-backend.vercel.app" },
-
+  {
+    name: "Divide Aqui (front-end)",
+    meta: "TCC FAETEC",
+    year: "2026",
+    href: "https://divide-aqui.vercel.app",
+    repo: "https://github.com/DivideAqui/DivideAqui-Frontend",
+    image: "/projects/divide-aqui-front.png",
+  },
+  {
+    name: "Divide Aqui (back-end)",
+    meta: "TCC FAETEC",
+    year: "2026",
+    href: "https://divide-aqui-backend.vercel.app",
+    repo: "https://github.com/DivideAqui/DivideAqui-Backend",
+    image: "/projects/divide-aqui-backend.png",
+  },
 ];
 
 
